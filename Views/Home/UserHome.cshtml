@@ -1,0 +1,32 @@
+@model User
+<div class="jumbotron">
+    <h1>Hello @Model.FirstName @Model.LastName</h1>
+    @{decimal sum = 0;}
+    @foreach (var i in Model.Histories)
+    {   
+        sum += i.Amount;
+    }
+    <h3>Balanace: $ @sum</h3>
+    <p>count: @Model.Histories.Count</p>
+    <p><a href="logout">Logout</a></p>
+</div>
+<partial name="Transaction.cshtml" model="new History(){UserId = @Model.UserId}"></partial>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in @Model.Histories)
+        {
+        <tr>
+            <td>$ @record.Amount</td>
+            <td>@record.Date</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+

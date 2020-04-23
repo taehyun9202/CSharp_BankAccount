@@ -1,0 +1,15 @@
+@model History
+<form asp-action="Transaction" method="post">
+    @{decimal sum = 0;}
+    @foreach (var i in @ViewBag.getUser.Histories)
+    {   
+        sum += i.Amount;
+    }
+    <p>Balanace check from Transaction cshtml: $ @sum</p>
+    <input type="hidden" asp-for="UserId" value="@Model.UserId">
+    <div class="form-group">
+        <label asp-for="Amount">Amount</label>
+        <input asp-for="Amount" class="form-control">
+    </div>
+    <input type="submit" value="Deposite/Withdraw" class="btn btn-danger">
+</form>
